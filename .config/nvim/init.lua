@@ -34,4 +34,5 @@ require("funni.plugins.autopairs")
 require("funni.plugins.treesitter")
 require("funni.plugins.gitsigns")
 
+-- for windows
 vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
