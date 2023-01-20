@@ -23,9 +23,6 @@ telescope.setup {
       -- disables netrw and use telescope-file-browser in its place
       hijack_netrw = true,
       mappings = {
-        -- ["<C-k>"] = actions.move_selection_previous,
-        -- ["<C-j>"] = actions.move_selection_next, -- move to next result
-        -- ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
         -- your custom insert mode mappings
         ["i"] = {
           ["<C-w>"] = function() vim.cmd('normal vbd') end,
