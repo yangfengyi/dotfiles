@@ -1,25 +1,9 @@
--- import telescope plugin safely
-local telescope_setup, telescope = pcall(require, "telescope")
-if not telescope_setup then
+local status, telescope = pcall(require, "telescope")
+if not status then
 	return
 end
-
--- import telescope actions safely
-local actions_setup, actions = pcall(require, "telescope.actions")
-if not actions_setup then
-	return
-end
-
--- import telescope-ui-select safely
-local themes_setup, themes = pcall(require, "telescope.themes")
-if not themes_setup then
-	return
-end
-
-local builtin_setup, builtin = pcall(require, "telescope.builtin")
-if not builtin_setup then
-	return
-end
+local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 
 local function telescope_buffer_dir()
 	return vim.fn.expand("%:p:h")
@@ -27,11 +11,12 @@ end
 
 local fb_actions = require("telescope").extensions.file_browser.actions
 
--- configure telescope
 telescope.setup({
-	-- configure custom mappings
 	defaults = {
 		mappings = {
+			n = {
+				["q"] = actions.close,
+			},
 			i = {
 				["<C-k>"] = actions.move_selection_previous, -- move to prev result
 				["<C-j>"] = actions.move_selection_next, -- move to next result
@@ -40,9 +25,6 @@ telescope.setup({
 		},
 	},
 	extensions = {
-		["ui-select"] = {
-			themes.get_dropdown({}),
-		},
 		file_browser = {
 			theme = "dropdown",
 			-- disables netrw and use telescope-file-browser in its place
@@ -66,9 +48,6 @@ telescope.setup({
 		},
 	},
 })
-
-telescope.load_extension("fzf")
-telescope.load_extension("ui-select")
 
 telescope.load_extension("file_browser")
 
