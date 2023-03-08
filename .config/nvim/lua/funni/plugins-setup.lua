@@ -34,8 +34,10 @@ return packer.startup(function(use)
 	-- lua functions that many plugins use
 	use("nvim-lua/plenary.nvim")
 
-	-- use({ "bluz71/vim-nightfly-guicolors", as = "nightfly" }) -- preferred colorscheme
-	use("rebelot/kanagawa.nvim")
+  use {
+    'svrana/neosolarized.nvim',
+    requires = { 'tjdevries/colorbuddy.nvim' }
+  }
 
 	-- use("EdenEast/nightfox.nvim")
 
